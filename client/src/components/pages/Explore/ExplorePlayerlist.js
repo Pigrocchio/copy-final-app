@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Container, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 
 
-class ExplorelistPlayer extends Component {
+
+class ExplorePlayerlist extends Component {
   constructor(props) {
     super(props);
   }
@@ -18,7 +20,7 @@ class ExplorelistPlayer extends Component {
     
     // if (idUser == this.props._id) {
     //   console.log("uguali");
-    //   this.props.verifyAlsoAppointed();
+    //   this.props.prova();
     // } else {
     //   console.log("nada");
     // }
@@ -26,6 +28,7 @@ class ExplorelistPlayer extends Component {
 
 console.log()
     return (
+      <>
       <Card
         style={{
           width: "7rem",
@@ -38,11 +41,13 @@ console.log()
          <Card.Text>{username}</Card.Text>
         </Card.Body>
       </Card>
+      
+        </>
     );
   }
 };
 
-export default ExplorelistPlayer;
+export default ExplorePlayerlist;
 
 
 

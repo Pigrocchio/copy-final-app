@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Button, Form } from "react-bootstrap";
 
-import OrganizeMatchsService from "../../service/OrganizeMatch.service";
-import ClubList from "../../service/Club.service";
+import OrganizeMatchsService from "../../../service/OrganizeMatch.service";
+import ClubList from "../../../service/Club.service";
 
 
 class OrganizeMatch extends Component {

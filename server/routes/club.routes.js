@@ -8,12 +8,12 @@ router.get("/getAllClub", (req, res) => {
     .catch(err => console.log("DB error", err));
 });
 
-// router.get("/:id", (req, res) => {
-//   const coasterId = req.params.id;
-//   Coaster.findById(coasterId)
-//     .then(theCoaster => res.json(theCoaster))
-//     .catch(err => console.log("DB error", err));
-// });
+router.get("/:id", (req, res) => {
+  const clubId = req.params.id;
+  Club.findById(clubId)
+    .then(theClub => res.json(theClub))
+    .catch(err => console.log("DB error", err));
+});
 
 router.post("/newclub", (req, res) => {
   const club = req.body;

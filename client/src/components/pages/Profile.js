@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Button, Form, Row, Container, Col, Modal } from "react-bootstrap";
-import OrganizeMatch from "../pages/OrganizeMatch";
-import MatchCreatedlist from "../pages/MatchCreatedlist";
-import EditMatch from "../pages/EditMatch"
+import OrganizeMatch from "../pages/Match/OrganizeMatch";
+import MatchCreatedlist from "./Match/MatchCreatedlist";
+import EditMatch from "../pages/Match/EditMatch";
 
 import Service from "../../service/OrganizeMatch.service";
 
@@ -12,8 +12,8 @@ class Profile extends Component {
     this._service = new Service();
     this.state = {
       showModalWindow1: false,
-      showModalWindow2: false,
       organizedmatch: [],
+      joinedmatch: [],
       logUser: props.loggedInUser._id
     };
   }
@@ -21,21 +21,35 @@ class Profile extends Component {
   componentDidMount = () => this.updateOrganizedMatchList();
 
   updateOrganizedMatchList = () => {
-    console.log(this.props.loggedInUser._id);
-    console.log(this.state.logUser);
+    // console.log(this.props.loggedInUser._id);
+    console.log("ID USUARIO LOGGEADO:", this.state.logUser);
     this._service
       .getAllCreatedMatch()
       .then(allCreatedMatchFromDB => {
-        console.log(allCreatedMatchFromDB.data);
-        this.setState({ organizedmatch: allCreatedMatchFromDB.data.filter(ownermatch => ownermatch.owner == this.props.loggedInUser._id) });
-        console.log(this.state.organizedmatch);
+        console.log("Todos lo partidos:", allCreatedMatchFromDB.data);
+
+        //Filter for only match created
+        let matchcreated = allCreatedMatchFromDB.data.filter(ownermatch => ownermatch.owner == this.props.loggedInUser._id);
+        this.setState({ organizedmatch: matchcreated });
+        console.log(" STATE ORGANIZED Match", this.state.organizedmatch);
+
+        // Filter for ony match where the usuer is appointed
+       
+        let join = allCreatedMatchFromDB.data.map(elm => elm.participant);
+        console.log("todos array participant", join);
+        let join2 = join.flat();
+        console.log(join2)
+        let joinedmatch = join2.filter(elm => elm._id == this.props.loggedInUser)
+        this.setState({ joinedmatch: joinedmatch });
+        console.log(" STATE Joined Match", this.state.joinedmatch);
+        
+
       })
+
       .catch(err => console.log("Error", err));
   };
 
   deleteTheMatch(id) {
-    // alert(id);
-    //   const MatchId = this.state.organizedmatch.id;
     this._service
       .deleteMatch(id)
       .then(x => {
@@ -47,13 +61,11 @@ class Profile extends Component {
 
   handleShow = () => this.setState({ showModalWindow1: true });
   handleClose = () => this.setState({ showModalWindow1: false });
-  handleShow2 = () => this.setState({ showModalWindow2: true });
-  handleClose2 = () => this.setState({ showModalWindow2: false });
 
   render() {
     const timeCut = this.props.loggedInUser.birthDate;
     const timeCutSplice = timeCut.substr(0, 10);
-   
+
     return (
       <Container>
         <h2>Bienvenid@ {this.props.loggedInUser.username}</h2>
@@ -67,7 +79,7 @@ class Profile extends Component {
               <br />
               <br />
               <div>
-                <Button variant="dark" onClick={this.handleShow}>
+                <Button variant="success" onClick={this.handleShow}>
                   Organize a match
                 </Button>
               </div>
@@ -79,10 +91,12 @@ class Profile extends Component {
                     {...matchs}
                     deleteMatch={this.deleteTheMatch.bind(this)}
                     updatematch={this.updateOrganizedMatchList}
-                    openmodal2={this.handleShow2}
+                    loggedInUser={this.props.loggedInUser}
                   />
                 ))}
               </Row>
+              <h4>Joined Match</h4>
+              <Row></Row>
             </div>
           </Col>
 
@@ -102,23 +116,22 @@ class Profile extends Component {
             <OrganizeMatch loggedInUser={this.props.loggedInUser} closeModalWindow={this.handleClose} updatematch={this.updateOrganizedMatchList} />
           </Modal.Body>
         </Modal>
-
-        <Modal show={this.state.showModalWindow2} onHide={this.handleClose2}>
-          <Modal.Header closeButton>
-            <Modal.Title>Edit a match</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <EditMatch
-              idMatch={this.state.organizedmatch}
-              loggedInUser={this.props.loggedInUser}
-              closeModalWindow={this.handleClose2}
-              updatematch={this.updateOrganizedMatchList}
-            />
-          </Modal.Body>
-        </Modal>
       </Container>
     );
   }
 }
 
 export default Profile;
+
+// MAP PER LISTA SIN EDITAR
+// <Row>
+//   {this.state.organizedmatch.map(matchs => (
+//     <MatchCreatedlist
+//       key={matchs._id}
+//       {...matchs}
+//       deleteMatch={this.deleteTheMatch.bind(this)}
+//       updatematch={this.updateOrganizedMatchList}
+//       loggedInUser={this.props.loggedInUser}
+//     />
+//   ))}
+// </Row>;

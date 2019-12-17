@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Button, Form, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-import OrganizeMatchsService from "../../service/OrganizeMatch.service";
-import ClubService from "../../service/Club.service";
+import OrganizeMatchsService from "../../../service/OrganizeMatch.service";
+import ClubService from "../../../service/Club.service";
 
 class EditMatch extends Component {
   constructor(props) {
@@ -151,6 +152,9 @@ class EditMatch extends Component {
             <Button variant="dark" size="sm" type="submit" disabled={this.state.disabledButton}>
               {this.state.buttonText}
             </Button>
+            <Link to="/profile" className="btn btn-sm btn-primary">
+              Back
+            </Link>
           </Form>
         </Container>
       );

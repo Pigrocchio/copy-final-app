@@ -17,12 +17,12 @@ class Explore extends Component {
 
   updateOrganizedMatchList = () => {
     let id = this.props.loggedInUser._id;
-    console.log(id);
+    console.log('Id logged User', id);
     this._service
       .getAllCreatedMatch()
       .then(allCreatedMatchFromDB => {
         this.setState({ organizedmatch: allCreatedMatchFromDB.data });
-        console.log('listato eventi:',this.state.organizedmatch);
+        console.log('listato eventi:', this.state.organizedmatch);
       })
       .catch(err => console.log("Error", err));
   };
@@ -30,18 +30,20 @@ class Explore extends Component {
   render() {
 
   const club = this.state.organizedmatch.club && this.state.organizedmatch.club.name;
-  console.log("Club detail:", club);
-
+  
+ 
 
     return (
       <>
-        <h1>Find Football match around you</h1>
-        <Row>
-          {this.state.organizedmatch &&
-            this.state.organizedmatch.map(matchs => (
-              <ExploreMatchlist key={matchs._id} {...matchs} id={this.props.loggedInUser._id} updatelist={this.updateOrganizedMatchList} />
-            ))}
-        </Row>
+        <Container>
+          <h1>Find Football match around you</h1>
+          <Row>
+            {this.state.organizedmatch &&
+              this.state.organizedmatch.map(matchs => (
+                <ExploreMatchlist key={matchs._id} {...matchs} id={this.props.loggedInUser._id} updatelist={this.updateOrganizedMatchList} />
+              ))}
+          </Row>
+        </Container>
       </>
     );
   }

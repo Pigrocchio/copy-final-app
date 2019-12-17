@@ -9,6 +9,6 @@ export default class Services {
   }
 
   getAllClub = () => this._service.get("/getAllClub");
-//   getOneCoaster = id => this._service.get(`/${id}`);
+  getOneClub = id => this._service.get(`/${id}`);
   // postOrganizeMatch = match => this._service.post("/new", match);
 }

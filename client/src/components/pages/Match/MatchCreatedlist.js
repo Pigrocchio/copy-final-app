@@ -3,6 +3,7 @@ import Col from "react-bootstrap/Col";
 
 import { Link } from "react-router-dom";
 import { Container, Card, Button } from "react-bootstrap";
+import MatchDetails from "./MatchDetails"
 
 class MatchCard extends Component {
   constructor(props) {
@@ -10,8 +11,8 @@ class MatchCard extends Component {
   }
 
   render() {
-    const { _id, name, owner, date, description } = this.props;
-
+    const { _id, name, owner, date, description, loggedInUser } = this.props;
+// console.log(this.props.loggedInUser._id);
     return (
       <Card style={{ width: "30rem" }}>
         <Card.Img variant="top" src="" />
@@ -19,17 +20,16 @@ class MatchCard extends Component {
           <Card.Title>{name}</Card.Title>
           <Card.Text>{description}</Card.Text>
           <Card.Text>{date}</Card.Text>
-          <Link className="btn btn-sm btn-dark" to={`/match/${_id}`}>
+          <Link className="btn btn-sm btn-dark"  loggedInUser={this.props.loggedInUser} to={`/match/${_id}`}>
             Ver detalles
           </Link>
-
           <Link className="btn btn-sm btn-primary" to={`/edit/${_id}`} id={this._id}>
             Edit Match
           </Link>
-
           <Button className="btn btn-sm btn-warning" onClick={this.props.deleteMatch.bind(this, _id)}>
             Delete Match
           </Button>
+          
         </Card.Body>
       </Card>
     );
@@ -38,16 +38,3 @@ class MatchCard extends Component {
 
 export default MatchCard;
 
-{
-  /* <Col className="match-card" md={4}>
-      <section>
-        <h3>{name}</h3>
-        <p>{owner}</p>
-        <small>{date}|</small>
-        <br></br>
-        <Link className="btn btn-sm btn-dark" to={`/coasters/${_id}`}>
-          Ver detalles
-        </Link>
-      </section>
-    </Col> */
-}
