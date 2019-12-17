@@ -10,7 +10,7 @@ require("./configs/view-engine.config")(app);
 require("./configs/locals.config")(app);
 require("./configs/session.config")(app);
 
-app.use("/", require("./routes/index.routes"));
+app.use("/api", require("./routes/index.routes"));
 app.use("/api/auth", require("./routes/auth.routes"));
 app.use("/api/files", require("./routes/files.routes"));
 app.use("/api/organizematch", require("./routes/organizematch.routes"));
