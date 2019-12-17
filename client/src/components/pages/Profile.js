@@ -5,6 +5,7 @@ import MatchCreatedlist from "./Match/MatchCreatedlist";
 import EditMatch from "../pages/Match/EditMatch";
 
 import Service from "../../service/OrganizeMatch.service";
+import MatchJoinedList from "./Match/MatchJoinedlist";
 
 class Profile extends Component {
   constructor(props) {
@@ -39,8 +40,10 @@ class Profile extends Component {
         console.log("todos array participant", join);
         let join2 = join.flat();
         console.log(join2)
-        let joinedmatch = join2.filter(elm => elm._id == this.props.loggedInUser)
-        this.setState({ joinedmatch: joinedmatch });
+        let joinedmatch = join2.map(elm => elm._id)
+        let filterjoin = joinedmatch.filter(elm => elm == this.props.loggedInUser._id);
+        console.log(filterjoin)
+        this.setState({ joinedmatch: filterjoin });
         console.log(" STATE Joined Match", this.state.joinedmatch);
         
 
@@ -95,8 +98,13 @@ class Profile extends Component {
                   />
                 ))}
               </Row>
+              <br />
               <h4>Joined Match</h4>
-              <Row></Row>
+              <Row>
+                {this.state.joinedmatch.map(matchs => (
+                  <MatchJoinedList key={matchs._id} {...matchs} loggedInUser={this.props.loggedInUser} matchdetail={this.state.organizedmatch} />
+                ))}
+              </Row>
             </div>
           </Col>
 

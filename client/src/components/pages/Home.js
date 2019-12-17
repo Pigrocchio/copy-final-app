@@ -28,7 +28,7 @@ class Home extends React.Component {
             <h1>Having a hard time organizing soccer matches with your friends?</h1>
 
             <div className="container text-left">
-              <img src="../../images/beers.png" className="d-block w-100" alt=""></img>
+              <img src="" className="d-block w-100" alt=""></img>
               <h2 className="lead">
                 Makes it easy to manage RSVP, invite players and communicate with your soccer buddies. Keep track of
                 your statistics. Participate in events and tournaments. Create your profile. If you play football, this

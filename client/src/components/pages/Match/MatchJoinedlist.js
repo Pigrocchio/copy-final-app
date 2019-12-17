@@ -12,7 +12,8 @@ class MatchJoinedList extends Component {
 
   render() {
     const { _id, name, owner, date, description, loggedInUser } = this.props;
-    console.log(this.props.loggedInUser._id);
+    console.log('ID DETAIL',this.props.loggedInUser._id);
+    console.log('MATCH DETAIL',this.props.matchdetail);
     return (
       <Card style={{ width: "30rem" }}>
         <Card.Img variant="top" src="" />
@@ -23,13 +24,7 @@ class MatchJoinedList extends Component {
           <Link className="btn btn-sm btn-dark" loggedInUser={this.props.loggedInUser} to={`/match/${_id}`}>
             Ver detalles
           </Link>
-          <Link className="btn btn-sm btn-primary" to={`/edit/${_id}`} id={this._id}>
-            Edit Match
-          </Link>
-          <Button className="btn btn-sm btn-warning" onClick={this.props.deleteMatch.bind(this, _id)}>
-            Delete Match
-          </Button>
-        </Card.Body>
+           </Card.Body>
       </Card>
     );
   }
