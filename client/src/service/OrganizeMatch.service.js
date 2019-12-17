@@ -3,7 +3,7 @@ import axios from "axios";
 export default class Services {
                  constructor() {
                    this._service = axios.create({
-                     baseURL: "http://localhost:5000/api/organizematch",
+                     baseURL: `${process.env.REACT_APP_URL}/organizematch`,
                      withCredentials: true // RUTAS PERSISTENTES
                    });
                  }

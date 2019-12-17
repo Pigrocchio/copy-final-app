@@ -3,7 +3,7 @@ import axios from "axios";
 export default class Services {
   constructor() {
     this._service = axios.create({
-      baseURL: "http://localhost:5000/api/club",
+      baseURL: `${process.env.REACT_APP_URL}/club`,
       withCredentials: true // RUTAS PERSISTENTES
     });
   }
