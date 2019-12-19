@@ -24,25 +24,25 @@ componentDidMount = () => this.setState({initialized:true})
 
 
   render() {
-    const { _id, name, owner, date, club, description, participant } = this.props;
+    const { _id, name, owner, date, club, description, participant, imageUrl } = this.props;
     const timeCut = this.props.date;
     const timeCutSplice = timeCut.substr(0, 10);
 
     let arrayUser = participant && participant.map(elm => elm._id);
-    console.log("array id utenti presenti:", arrayUser);
+    // console.log("array id utenti presenti:", arrayUser);
     
 
 
-    console.log('ID UTENTE LOG:', this.props.id);
+    // console.log('ID UTENTE LOG:', this.props.id);
     
   
-    console.log("location",this.props.club.location.coordinates)
+    // console.log("location",this.props.club.location.coordinates)
 
     return (
       <>
-        <Container>
+        <Container className="explore-card ">
           <Card style={{ width: "50rem" }}>
-            <Card.Img variant="top" src="" />
+            <Card.Img variant="top" src={club.imageUrl} alt={name} fluid />
             <Card.Body>
               <Card.Title>{name}</Card.Title>
               <Card.Text>{description}</Card.Text>
@@ -52,11 +52,9 @@ componentDidMount = () => this.setState({initialized:true})
               <Card.Text>{club.name}</Card.Text>
               <Card.Title>Partecipants </Card.Title> <span>Number of partecipants {participant.length} </span>
               <Row>{participant && participant.map(matchs => <ExplorePlayerlist loggedIn={this.props.id} key={matchs._id} {...matchs} />)}</Row>
-              
-                <Link className="btn btn-sm btn-dark" to={`/explorematch/${_id}`}>
+              <Link className="btn btn-sm btn-dark" to={`/explorematch/${_id}`}>
                 Ver detalles
               </Link>
-             
             </Card.Body>
           </Card>
         </Container>

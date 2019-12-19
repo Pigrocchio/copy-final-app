@@ -107,7 +107,7 @@ class OrganizeMatch extends Component {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Select a Number</Form.Label>
+          <Form.Label>Select a Club</Form.Label>
           <select name="club" value={this.state.match.club} onChange={this.handleInputChange}>
             <option disabled value>
               Select an option

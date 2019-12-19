@@ -12,6 +12,8 @@ class MatchCard extends Component {
 
   render() {
     const { _id, name, owner, date, description, loggedInUser } = this.props;
+
+    const datecut = this.props.date && this.props.date.substr(0, 10);
 // console.log(this.props.loggedInUser._id);
     return (
       <Card style={{ width: "30rem" }}>
@@ -19,8 +21,8 @@ class MatchCard extends Component {
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Text>{description}</Card.Text>
-          <Card.Text>{date}</Card.Text>
-          <Link className="btn btn-sm btn-dark"  loggedInUser={this.props.loggedInUser} to={`/match/${_id}`}>
+          <Card.Text>{datecut}</Card.Text>
+          <Link className="btn btn-sm btn-dark" loggedInUser={this.props.loggedInUser} to={`/match/${_id}`}>
             Ver detalles
           </Link>
           <Link className="btn btn-sm btn-primary" to={`/edit/${_id}`} id={this._id}>
@@ -29,7 +31,6 @@ class MatchCard extends Component {
           <Button className="btn btn-sm btn-warning" onClick={this.props.deleteMatch.bind(this, _id)}>
             Delete Match
           </Button>
-          
         </Card.Body>
       </Card>
     );

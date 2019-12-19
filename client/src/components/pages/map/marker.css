@@ -2,12 +2,26 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 18px;
-    height: 18px;
-    background-color: #000;
+    width: 10px;
+    height: 10px;
+    background-color:red;
+    color: black;
     border: 2px solid #fff;
     border-radius: 100%;
     user-select: none;
     transform: translate(-50%, -50%)
+    
     }
   
+.pin {
+  width: 10px;
+  height: 10px;
+  border-radius: 50% 50% 50% 0;
+  background: red;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -20px 0 0 -20px;
+  cursor: pointer
+}

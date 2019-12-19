@@ -64,4 +64,12 @@ router.get("/allCreatebyOwner", (req, res) => {
     .catch(err => console.log("DB error", err));
 });
 
+router.post("/joinedmatch", (req, res) => {
+  const userId = req.body.id
+  console.log("------> log del joinedmatch:", userId);
+    Match.find({ participant: { $in: userId } })
+      .then(allJoinedMatch => res.json(allJoinedMatch))
+      .catch(err => console.log("DB error", err));
+})
+
 module.exports = router;

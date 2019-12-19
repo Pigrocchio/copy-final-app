@@ -58,7 +58,7 @@ class SignupForm extends Component {
         console.log("Subida de archivo finalizada! La URL de Cloudinray es: ", response.data.secure_url);
         this.setState({
           disabledButton: false,
-          buttonText: "Crear montaña rusa",
+          buttonText: "Crear perfil",
           imageUrl: response.data.secure_url
         });
         console.log(this.state.imageUrl);
@@ -110,12 +110,12 @@ class SignupForm extends Component {
             </select>
           </Form.Group>
 
-          <Form.Group>
+          {/* <Form.Group>
             <Form.Label>Location</Form.Label>
 
             <input type="text" name="latitude" placeholder="latitude" value={this.state.location[0]} onChange={this.handleInputChange} />
             <input type="text" name="longitude" placeholder="longitude" value={this.state.location[1]} onChange={this.handleInputChange} />
-          </Form.Group>
+          </Form.Group> */}
 
           <Button variant="dark" type="submit">
             Registrarme

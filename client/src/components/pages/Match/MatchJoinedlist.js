@@ -12,19 +12,20 @@ class MatchJoinedList extends Component {
 
   render() {
     const { _id, name, owner, date, description, loggedInUser } = this.props;
-    console.log('ID DETAIL',this.props.loggedInUser._id);
-    console.log('MATCH DETAIL',this.props.matchdetail);
+    const datecut = date.substr(0, 10);
+
+
     return (
       <Card style={{ width: "30rem" }}>
         <Card.Img variant="top" src="" />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Text>{description}</Card.Text>
-          <Card.Text>{date}</Card.Text>
+          <Card.Text>{datecut}</Card.Text>
           <Link className="btn btn-sm btn-dark" loggedInUser={this.props.loggedInUser} to={`/match/${_id}`}>
             Ver detalles
           </Link>
-           </Card.Body>
+        </Card.Body>
       </Card>
     );
   }

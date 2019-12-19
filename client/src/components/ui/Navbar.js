@@ -56,10 +56,7 @@ class Navigation extends Component {
             <Nav.Link as="li">
               <Link to="/">Inicio</Link>
             </Nav.Link>
-            <Nav.Link as="li">
-              <Link to="/boh">Qualcosa andrà qui</Link>
-            </Nav.Link>
-            <Nav.Link as="li">
+                       <Nav.Link as="li">
               <Link to="/signup">Registro</Link>
             </Nav.Link>
             <Nav.Link as="li">

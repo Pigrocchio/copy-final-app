@@ -28,27 +28,27 @@ class Profile extends Component {
       .getAllCreatedMatch()
       .then(allCreatedMatchFromDB => {
         console.log("Todos lo partidos:", allCreatedMatchFromDB.data);
-
         //Filter for only match created
         let matchcreated = allCreatedMatchFromDB.data.filter(ownermatch => ownermatch.owner == this.props.loggedInUser._id);
         this.setState({ organizedmatch: matchcreated });
-        console.log(" STATE ORGANIZED Match", this.state.organizedmatch);
-
-        // Filter for ony match where the usuer is appointed
-       
-        let join = allCreatedMatchFromDB.data.map(elm => elm.participant);
-        console.log("todos array participant", join);
-        let join2 = join.flat();
-        console.log(join2)
-        let joinedmatch = join2.map(elm => elm._id)
-        let filterjoin = joinedmatch.filter(elm => elm == this.props.loggedInUser._id);
-        console.log(filterjoin)
-        this.setState({ joinedmatch: filterjoin });
-        console.log(" STATE Joined Match", this.state.joinedmatch);
-        
-
+        console.log("STATE ORGANIZED Match", this.state.organizedmatch);
+        // let matchAssisted = allCreatedMatchFromDB.data.filter(match => match.participant.includes(this.props.loggedInUser._id));
+        // console.log("---------> ASSISTED:", matchAssisted);
       })
+      .catch(err => console.log("Error", err));
 
+
+    
+    //Show only joined match as partecipant
+    const logId = this.props.loggedInUser && this.props.loggedInUser._id;
+    this._service
+      .getJoinedMatch(logId)
+      .then(onlyJoinedMatch => {
+        console.log("Solo Joined Match:", onlyJoinedMatch.data);
+        this.setState({ joinedmatch: onlyJoinedMatch.data });
+        console.log('STATE DI JOINED MATCH:', this.state.joinedmatch)
+        ;
+      })
       .catch(err => console.log("Error", err));
   };
 
@@ -86,25 +86,7 @@ class Profile extends Component {
                   Organize a match
                 </Button>
               </div>
-              <h4>Organized Match</h4>
-              <Row>
-                {this.state.organizedmatch.map(matchs => (
-                  <MatchCreatedlist
-                    key={matchs._id}
-                    {...matchs}
-                    deleteMatch={this.deleteTheMatch.bind(this)}
-                    updatematch={this.updateOrganizedMatchList}
-                    loggedInUser={this.props.loggedInUser}
-                  />
-                ))}
-              </Row>
               <br />
-              <h4>Joined Match</h4>
-              <Row>
-                {this.state.joinedmatch.map(matchs => (
-                  <MatchJoinedList key={matchs._id} {...matchs} loggedInUser={this.props.loggedInUser} matchdetail={this.state.organizedmatch} />
-                ))}
-              </Row>
             </div>
           </Col>
 
@@ -116,6 +98,31 @@ class Profile extends Component {
           </Col>
         </Row>
 
+        <Row>
+          <Col md={6}>
+            <h4>Organized Match</h4>
+            <Row>
+              {this.state.organizedmatch.map(matchs => (
+                <MatchCreatedlist
+                  key={matchs._id}
+                  {...matchs}
+                  deleteMatch={this.deleteTheMatch.bind(this)}
+                  updatematch={this.updateOrganizedMatchList}
+                  loggedInUser={this.props.loggedInUser}
+                />
+              ))}
+            </Row>
+          </Col>
+          <Col md={6}>
+            <h4>Joined Match</h4>
+            <Row>
+              {this.state.joinedmatch.map(matchs => (
+                <MatchJoinedList key={matchs._id} {...matchs} loggedInUser={this.props.loggedInUser} matchdetail={this.state.organizedmatch} />
+              ))}
+            </Row>
+          </Col>
+        </Row>
+        
         <Modal show={this.state.showModalWindow1} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Organize a match</Modal.Title>

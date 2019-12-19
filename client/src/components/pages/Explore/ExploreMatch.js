@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import GoogleMapReact from "google-map-react";
 import Partecipantlist from "../Match/Partecipantlist";
 
+import WrappedMap from "../map/NewSingleMap";
+
 import OrganizeMatchsService from "../../../service/OrganizeMatch.service";
 
 class ExploreMatch extends Component {
@@ -61,15 +63,22 @@ class ExploreMatch extends Component {
     console.log("LIST PARTECIPANT ARRAY", arrayIdPartecipant);
 
     let arrayUser = arrayIdPartecipant.map(elm => elm._id);
-    console.log("ARRAY ID", arrayUser);
+    // console.log("ARRAY ID", arrayUser);
 
     
     let userAppointed = arrayUser.some(elm => elm == logId);
-    console.log('USUARIO PRESENTE ?:', userAppointed);
+    // console.log('USUARIO PRESENTE ?:', userAppointed);
 
     const cut = this.state.match.date && this.state.match.date.substr(0, 10);
     const participantLenght = this.state.match.participant && this.state.match.participant.length;
     const club = this.state.match.club && this.state.match.club.name;
+    const clubId = this.state.match && this.state.match.club;
+
+    const lat = this.state.match.club && this.state.match.club.location.coordinates[0];
+    console.log('Club coordinates', lat);
+    
+    const long = this.state.match.club && this.state.match.club.location.coordinates[1];
+    console.log("Club coordinates", long);
 
     // JOIN BUTTON DISABLE AFTER FULL MATCH LIST
 
@@ -97,7 +106,7 @@ class ExploreMatch extends Component {
       <Container className="match-details">
         <section>
           <Row>
-            <Col md={6}>
+            <Col md={4}>
               <h2>{this.state.match.name}</h2>
               <p>
                 <strong>Descripción:</strong> {this.state.match.description}
@@ -122,17 +131,17 @@ class ExploreMatch extends Component {
               </Button>
             </Col>
 
-            <Col md={{ span: 4, offset: 2 }}>
-              <GoogleMapReact
-                bootstrapURLKeys={{
-                  key: "AIzaSyDG88rK2sVwRDbZIJautuIZpNt32kAQpSU",
-                  language: "en"
-                }}
-                style={{ width: "100%", height: "100%", position: "relative" }}
-                defaultCenter={{ lat: 40.73, lng: -73.93 }}
-                center={{ lat: 40.73, lng: -73.93 }}
-                defaultZoom={12}
-              ></GoogleMapReact>
+            <Col md={{ span: 6, offset: 0 }}>
+              <WrappedMap
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE}`}
+                loadingElement={<div style={{ height: `45vh` }} />}
+                containerElement={<div style={{ height: `45vh` }} />}
+                mapElement={<div style={{ height: `45vh` }} />}
+                clubid={clubId}
+                coordinates={{ lat, long }}
+              />
+
+              
             </Col>
           </Row>
         </section>
