@@ -24,20 +24,14 @@ class ExplorePlayerlist extends Component {
 console.log()
     return (
       <>
-        <Card
-          style={{
-            width: "10rem",
-            margin: "2px",
-            textAlign: "center",
-            backgroundColor: "beige"
-          }}
-        >
-          <Card.Body>
-            <Card.Img variant="top" src={imageUrl} />
-            <Card.Text>{username}</Card.Text>
-          </Card.Body>
+       <Card style={{ width: "10rem"  }}>
+                 <Card.Img style={{ width: "10rem" }} variant="top" src={imageUrl} />
+                 <Card.Body>
+                   <Card.Title>{username}</Card.Title>
+                   <Card.Text>Preferred Role {role}</Card.Text>
+                 </Card.Body>
         </Card>
-      </>
+        </>
     );
   }
 };

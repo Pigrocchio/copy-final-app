@@ -72,74 +72,78 @@ class SignupForm extends Component {
   render() {
     return (
       <Container>
-        <h1>Sign Up</h1>
+        <div className="signup-shadow">
+          <article className="form">
+            <h1>Sign Up</h1>
 
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Label>Usuario</Form.Label>
-            <Form.Control type="text" name="username" onChange={this.handleInputChange} value={this.state.username} />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Contraseña</Form.Label>
-            <Form.Control type="text" name="password" onChange={this.handleInputChange} value={this.state.password} />
-          </Form.Group>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group>
+                <Form.Label>Usuario</Form.Label>
+                <Form.Control type="text" name="username" onChange={this.handleInputChange} value={this.state.username} />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control type="text" name="password" onChange={this.handleInputChange} value={this.state.password} />
+              </Form.Group>
 
-          <Form.Group>
-            <Form.Label>email</Form.Label>
-            <Form.Control type="text" name="email" onChange={this.handleInputChange} value={this.state.email} />
-          </Form.Group>
+              <Form.Group>
+                <Form.Label>email</Form.Label>
+                <Form.Control type="text" name="email" onChange={this.handleInputChange} value={this.state.email} />
+              </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Fecha nacimiento</Form.Label>
-            <Form.Control type="date" name="birthDate" onChange={this.handleInputChange} value={this.state.birthDate} />
-          </Form.Group>
+              <Form.Group>
+                <Form.Label>Fecha nacimiento</Form.Label>
+                <Form.Control type="date" name="birthDate" onChange={this.handleInputChange} value={this.state.birthDate} />
+              </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Imagen URL (archivo)</Form.Label>
-            <Form.Control name="imageUrl" type="file" onChange={this.handleFileUpload} />
-          </Form.Group>
+              <Form.Group>
+                <Form.Label>Imagen URL (archivo)</Form.Label>
+                <Form.Control name="imageUrl" type="file" onChange={this.handleFileUpload} />
+              </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Select our Role</Form.Label>
-            <select name="role" selected={this.state.role} onChange={this.handleInputChange}>
-              <option value="GK">Select a role</option>
-              <option value="GK"> GK</option>
-              <option value="DEF">DD</option>
-              <option value="CC">CC</option>
-              <option value="ATT">ATT</option>
-            </select>
-          </Form.Group>
+              <Form.Group>
+                <Form.Label>Select our Role</Form.Label>
+                <select name="role" selected={this.state.role} onChange={this.handleInputChange}>
+                  <option value="GK">Select a role</option>
+                  <option value="GK"> GK</option>
+                  <option value="DEF">DD</option>
+                  <option value="CC">CC</option>
+                  <option value="ATT">ATT</option>
+                </select>
+              </Form.Group>
 
-          {/* <Form.Group>
+              {/* <Form.Group>
             <Form.Label>Location</Form.Label>
 
             <input type="text" name="latitude" placeholder="latitude" value={this.state.location[0]} onChange={this.handleInputChange} />
             <input type="text" name="longitude" placeholder="longitude" value={this.state.location[1]} onChange={this.handleInputChange} />
           </Form.Group> */}
 
-          <Button variant="dark" type="submit">
-            Registrarme
-          </Button>
-        </Form>
+              <Button variant="dark" type="submit">
+                Registrarme
+              </Button>
+            </Form>
 
-        <Toast
-          onClose={this.handleToastClose}
-          show={this.state.showToast}
-          delay={3000}
-          autohide
-          style={{
-            position: "fixed",
-            right: "10px",
-            bottom: "10px",
-            minWidth: "250px"
-          }}
-        >
-          <Toast.Header>
-            <strong className="mr-auto">Error</strong>
-            <small>Session manager</small>
-          </Toast.Header>
-          <Toast.Body>{this.state.toastText}</Toast.Body>
-        </Toast>
+            <Toast
+              onClose={this.handleToastClose}
+              show={this.state.showToast}
+              delay={3000}
+              autohide
+              style={{
+                position: "fixed",
+                right: "10px",
+                bottom: "10px",
+                minWidth: "250px"
+              }}
+            >
+              <Toast.Header>
+                <strong className="mr-auto">Error</strong>
+                <small>Session manager</small>
+              </Toast.Header>
+              <Toast.Body>{this.state.toastText}</Toast.Body>
+            </Toast>
+          </article>
+        </div>
       </Container>
     );
   }

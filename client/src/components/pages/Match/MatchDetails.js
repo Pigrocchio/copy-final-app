@@ -45,8 +45,8 @@ console.log(long);
 
      
     return (
-      <Container className="match-details">
-        <section>
+      <Container  className="match-details">
+        <section className="margin-top">
           <Row>
             <Col md={6}>
               <h2>{this.state.match.name}</h2>
@@ -56,15 +56,16 @@ console.log(long);
               <hr></hr>
               <p>
                 <strong>Date:</strong> <p>{datecut}</p>
-                <small>Star Hour:</small> {this.state.match.starthour} | <small>End Hours:</small> {this.state.match.endhour}
+                <strong>Star Hour:</strong> {this.state.match.starthour} | <strong>End Hours:</strong> {this.state.match.endhour}
               </p>
               <strong>Club:</strong> {clubname}
               <hr></hr>
+              <strong>Price: €</strong> {this.state.match.price}
+              <hr></hr>
               <strong>Partecipants number:</strong> {participant}
               <hr></hr>
-              <Row>{this.state.match.participant && this.state.match.participant.map(matchs => <Partecipantlist key={matchs._id} {...matchs} />)}</Row>
               <br />
-              <Link to="/profile" className="btn btn-dark">
+              <Link to="/profile" className="btn btn-info">
                 Volver
               </Link>
             </Col>
@@ -80,6 +81,7 @@ console.log(long);
               />
             </Col>
           </Row>
+              <Row>{this.state.match.participant && this.state.match.participant.map(matchs => <Partecipantlist key={matchs._id} {...matchs} />)}</Row>
         </section>
       </Container>
     );

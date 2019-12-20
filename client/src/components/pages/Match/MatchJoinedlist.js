@@ -16,13 +16,13 @@ class MatchJoinedList extends Component {
 
 
     return (
-      <Card style={{ width: "30rem" }}>
+      <Card className="box"  style={{ width: "30rem" }}>
         <Card.Img variant="top" src="" />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Text>{description}</Card.Text>
           <Card.Text>{datecut}</Card.Text>
-          <Link className="btn btn-sm btn-dark" loggedInUser={this.props.loggedInUser} to={`/match/${_id}`}>
+          <Link className="btn btn-info" loggedInUser={this.props.loggedInUser} to={`/match/${_id}`}>
             Ver detalles
           </Link>
         </Card.Body>

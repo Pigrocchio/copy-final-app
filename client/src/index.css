@@ -1,16 +1,18 @@
+
+
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-weight: 100;
+  background-image: url("https://res.cloudinary.com/deht3vcvn/image/upload/v1576828333/appfinaltest/background1_x2mnuy.jpg");
+  background-repeat: no-repeat;
+   background-size: cover;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1, h2, h3, h4 {
+  font-weight: 200;
+  margin: 20px 0;
 }
+
 
 .patient-card img {
   width: 100%;
@@ -18,21 +20,33 @@ code {
   
 }
 
+.margin-top {
+  margin-top: 30px;
+}
+
+.margin-bottom {
+  margin-bottom: 40px;
+}
+
 /*NAVBAR*/
 
 .navbar-brand img {
-  width : 50px;
-  height : 50px
+  width : 30%;
+  height : 70px
 }
 
 .limegreen {
-  background-color:limegreen
+    background-color: #28a745;
 }
-
 
 .navbar-nav a {
     color: whitesmoke;
 }
+.anchorNav:hover {
+  text-decoration-line: none;
+}
+
+
 
 /* HOMEPAGE */
 .jumbotron {
@@ -41,6 +55,7 @@ code {
     border-radius: .3rem;
 }
 
+/* CARD */
 
 .explore-card img {
   width: 100%;
@@ -51,4 +66,76 @@ code {
 .explore-card {
   padding: 0 20px;
   margin: 20px 0
+}
+
+.btn {
+  margin: 10px;
+}
+
+.card{
+  margin: 5px
+}
+
+.profile-card img {
+  border-radius: 10px;
+}
+
+.btn-dark{
+  background: grey;
+  border-color: grey
+}
+
+.btn-info{
+     color: #fff;
+    background-color: #087384;
+    border-color: #17a2b8;
+}
+
+
+.align{
+  display: flex;
+  align-items: center;
+}
+
+.form {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 15px;
+  margin: auto;
+}
+
+.homeimage {
+  width: 80%;
+}
+
+
+.loginimage {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.center-image {
+  display: block;
+margin: 0 auto;
+}
+
+.signup-shadow{
+  background-image: url('https://res.cloudinary.com/deht3vcvn/image/upload/v1576834960/appfinaltest/signupimage_yrharj.png');
+  background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	
+}
+
+.box {
+  transition: box-shadow .3s;
+  border-radius:10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  float: left;
+}
+
+.box:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2); 
 }

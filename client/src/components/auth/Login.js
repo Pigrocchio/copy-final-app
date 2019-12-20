@@ -43,45 +43,49 @@ class LoginForm extends Component {
     return (
       <>
         <Container>
-          <Row>
-            <Col></Col>
-            <Col md={8}>
-              <h1>Iniciar sesión</h1>
-              <Form onSubmit={this.handleSubmit}>
-                <Form.Group>
-                  <Form.Label>Usuario</Form.Label>
-                  <Form.Control type="text" name="username" onChange={this.handleInputChange} value={this.state.user.username} />
-                </Form.Group>
-                <Form.Group>
-                  <Form.Label>Contraseña</Form.Label>
-                  <Form.Control type="text" name="password" onChange={this.handleInputChange} value={this.state.user.password} />
-                </Form.Group>
-                <Button variant="dark" type="submit">
-                  Iniciar sesión
-                </Button>
-              </Form>
-
-              <Toast
-                onClose={this.handleToastClose}
-                show={this.state.showToast}
-                delay={3000}
-                autohide
-                style={{
-                  position: "fixed",
-                  right: "10px",
-                  bottom: "10px",
-                  minWidth: "250px"
-                }}
-              >
-                <Toast.Header>
-                  <strong className="mr-auto">Error</strong>
-                  <small>Session manager</small>
-                </Toast.Header>
-                <Toast.Body>{this.state.toastText}</Toast.Body>
-              </Toast>
-            </Col>
-            <Col></Col>
-          </Row>
+          <article className="form">
+            <Row>
+              <Col></Col>
+              <Col md={12}>
+                <h1>Iniciar sesión</h1>
+                <Form onSubmit={this.handleSubmit}>
+                  <Form.Group>
+                    <Form.Label>Usuario</Form.Label>
+                    <Form.Control type="text" name="username" onChange={this.handleInputChange} value={this.state.user.username} />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Contraseña</Form.Label>
+                    <Form.Control type="text" name="password" onChange={this.handleInputChange} value={this.state.user.password} />
+                  </Form.Group>
+                  <Button variant="dark" type="submit">
+                    Iniciar sesión
+                  </Button>
+                </Form>
+                <div className="center-image">
+                  <img src="https://res.cloudinary.com/deht3vcvn/image/upload/v1576833839/appfinaltest/loginimage_xymwte.png" className="loginimage"></img>
+                </div>
+                <Toast
+                  onClose={this.handleToastClose}
+                  show={this.state.showToast}
+                  delay={3000}
+                  autohide
+                  style={{
+                    position: "fixed",
+                    right: "10px",
+                    bottom: "10px",
+                    minWidth: "250px"
+                  }}
+                >
+                  <Toast.Header>
+                    <strong className="mr-auto">Error</strong>
+                    <small>Session manager</small>
+                  </Toast.Header>
+                  <Toast.Body>{this.state.toastText}</Toast.Body>
+                </Toast>
+              </Col>
+              <Col></Col>
+            </Row>
+          </article>
         </Container>
       </>
     );

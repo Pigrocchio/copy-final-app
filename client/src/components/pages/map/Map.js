@@ -39,8 +39,15 @@ const Map = withScriptjs(
             onClick={() => {
               setSelectedMatch(item);
             }}
-            title={`${item.club.name}`}
-            label={`${item.club.name}`}
+            label={{
+              text: `${item.club.name}`,
+              color: "black",
+              fontSize: "10px"
+            }}
+            labelStyle={{ backgroundColor: "yellow", fontSize: "32px", padding: "16px" }}
+            icon={{
+              labelOrigin: (55, 12)
+            }}
             className="pin"
           />
         ))}
@@ -58,9 +65,8 @@ const Map = withScriptjs(
               <h5>{selectedMatch.club.name}</h5>
               <p> {selectedMatch.club.description}</p>
               <p> {selectedMatch.club.date}</p>
-              
 
-              <Link to={`/match/${selectedMatch._id}`}>More detail</Link>
+              <Link to={`/explorematch/${selectedMatch._id}`}>More detail</Link>
             </div>
           </InfoWindow>
         )}

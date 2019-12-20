@@ -18,7 +18,6 @@ import Home from "./components/pages/Home";
 import MatchDetails from "./components/pages/Match/MatchDetails";
 import EditMatch from "./components/pages/Match/EditMatch";
 
-
 /*EXPLORE COMPONENT */
 import Explore from "./components/pages/Explore/Explore";
 import ExploreMatch from "./components/pages/Explore/ExploreMatch";
@@ -55,8 +54,8 @@ class App extends Component {
       <>
         <Navbar loggedInUser={this.state.loggedInUser} setUser={this.setTheUser} />
         <Switch>
-          <Route exact path="/" component={Home} />
-          {/* <Route path="/edit/:id" component={EditMatch} /> */}
+          <Route exact path="/" render={() => ( <Home loggedInUser={this.state.loggedInUser} /> )} />
+          {/* <Route exact path="/" component={Home} /> */}
           <Route path="/edit/:id" component={EditMatch} />
           <Route exact path="/explore" render={() => (this.state.loggedInUser ? <Explore loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />)} />
           <Route path="/match/:id" component={MatchDetails} />
@@ -73,11 +72,12 @@ class App extends Component {
 
 export default App;
 
-
-{/* <Route exact path="/agenda" render={match =>
+{
+  /* <Route exact path="/agenda" render={match =>
             this.state.loggedInUser == null ?
             <Redirect to="/agenda"/>
             : this.state.loggedInUser ?
                <Agenda loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/>
                : <Redirect to="/"/>}
-            /> */}
+            /> */
+}

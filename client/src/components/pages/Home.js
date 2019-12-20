@@ -20,39 +20,53 @@ class Home extends React.Component {
   handleClose = () => this.setState({ showModalWindow: false })
 
   render() {
+             console.log("ddd", this.props.loggedInUser);
 
-    return (
-      <Container>
-        <section>
-          <div className="jumbotron">
-            <h1>Having a hard time organizing soccer matches with your friends?</h1>
+             // Sign Up BUTTON DISABLE AFTER FULL MATCH LIST
+let userAppointed = this.props.loggedInUser
+             let signupbutton;
 
-            <div className="container text-left">
-              <img src="" className="d-block w-100" alt=""></img>
-              <h2 className="lead">
-                Makes it easy to manage RSVP, invite players and communicate with your soccer buddies. Keep track of
-                your statistics. Participate in events and tournaments. Create your profile. If you play football, this
-                is the best app! 
-              </h2>
-          <Button variant="dark" onClick={this.handleShow}>
-            Sign Up
-          </Button>
-            </div>
-          </div>
+             if (userAppointed == false) {
+               signupbutton = (
+                 <>
+                  <Link className="btn btn-success" to="/login">
+                     LOGIN{" "}
+                   </Link>
+                   <Link className="btn btn-primary" to="/signup">
+                     SIGN UP{" "}
+                   </Link>
+                   </>
+               )
+    } else if (userAppointed == true) {
+      signupbutton = <p></p>;
+    }
+             
 
-
-          <Modal show={this.state.showModalWindow} onHide={this.handleClose} >
-            <Modal.Header closeButton>
-              <Modal.Title>Sign Up form</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Signup closeModalWindow={this.handleClose} />
-            </Modal.Body>
-          </Modal>
-        </section>
-      </Container>
-    );
-  };
+             return (
+               <Container className="margin-top">
+                 <section>
+                   <div className="">
+                     <div className="container text-center">
+                       <h1>Having a hard time organizing soccer matches with your friends?</h1>
+                       <h2 className="lead">
+                         Makes it easy to manage Futsal match, invite players and keep track of your match. Participate in events and tournaments. Create your
+                         profile. If you play Futsal, this is your app!
+                       </h2>
+                       <img
+                         src="https://res.cloudinary.com/deht3vcvn/image/upload/v1576830402/appfinaltest/imagehome_rzuunm.png"
+                         className="homeimage"
+                         alt=""
+                         fluid
+                       ></img>
+                     </div>
+                   </div>
+                 </section>
+                 <section className="margin-bottom container text-center">
+                  {signupbutton}
+                 </section>
+               </Container>
+             );
+           };
 }
 
 export default Home;

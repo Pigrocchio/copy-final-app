@@ -21,20 +21,30 @@ class Navigation extends Component {
 
     return this.props.loggedInUser ? (
       <Navbar bg="" variant="dark" expand="md" className="limegreen">
-        <Navbar.Brand>
-          <img src="../../../logo192.png" className="d-inline-block align-top" alt="React Bootstrap logo" />
+        <Navbar.Brand href="/">
+          <img
+            src="https://res.cloudinary.com/deht3vcvn/image/upload/v1576784414/appfinaltest/futsallogo2_mp54e3.png"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse>
           <Nav className="mr-auto">
             <Nav.Link as="li">
-              <Link to="/">Inicio</Link>
+              <Link to="/" className="anchorNav">
+                Inicio
+              </Link>
             </Nav.Link>
             <Nav.Link as="li">
-              <Link to="/profile">Mi perfil</Link>
+              <Link to="/profile" className="anchorNav">
+                Mi perfil
+              </Link>
             </Nav.Link>
             <Nav.Link as="li">
-              <Link to="/explore">Explore</Link>
+              <Link to="/explore" className="anchorNav">
+                Explore
+              </Link>
             </Nav.Link>
             <Nav.Link as="li" onClick={this.logoutUser}>
               Logout
@@ -48,19 +58,29 @@ class Navigation extends Component {
     ) : (
       <Navbar bg="" variant="dark" expand="md" className="limegreen">
         <Navbar.Brand>
-          <img src="../../../logo192.png" width="30" height="30" className="d-inline-block align-top" alt="React Bootstrap logo" />
+          <img
+            src="https://res.cloudinary.com/deht3vcvn/image/upload/v1576784414/appfinaltest/futsallogo2_mp54e3.png"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse>
           <Nav className="mr-auto">
             <Nav.Link as="li">
-              <Link to="/">Inicio</Link>
-            </Nav.Link>
-                       <Nav.Link as="li">
-              <Link to="/signup">Registro</Link>
+              <Link to="/" className="anchorNav">
+                Inicio
+              </Link>
             </Nav.Link>
             <Nav.Link as="li">
-              <Link to="/login">Login</Link>
+              <Link to="/signup" className="anchorNav">
+                Registro
+              </Link>
+            </Nav.Link>
+            <Nav.Link as="li">
+              <Link to="/login" className="anchorNav">
+                Login
+              </Link>
             </Nav.Link>
           </Nav>
           <Nav className="ml-auto">

@@ -40,19 +40,22 @@ componentDidMount = () => this.setState({initialized:true})
 
     return (
       <>
-        <Container className="explore-card ">
-          <Card style={{ width: "50rem" }}>
+        <Container className="explore-card text-center ">
+          <Card className="box" style={{ width: "45rem" }}>
             <Card.Img variant="top" src={club.imageUrl} alt={name} fluid />
             <Card.Body>
-              <Card.Title>{name}</Card.Title>
+              <Card.Title>
+                <h2>{name}</h2>
+              </Card.Title>
               <Card.Text>{description}</Card.Text>
               <Card.Title>Date del partido</Card.Title>
               <Card.Text>{timeCutSplice}</Card.Text>
               <Card.Title>Club del partido</Card.Title>
               <Card.Text>{club.name}</Card.Text>
               <Card.Title>Partecipants </Card.Title> <span>Number of partecipants {participant.length} </span>
+              <br></br>
               <Row>{participant && participant.map(matchs => <ExplorePlayerlist loggedIn={this.props.id} key={matchs._id} {...matchs} />)}</Row>
-              <Link className="btn btn-sm btn-dark" to={`/explorematch/${_id}`}>
+              <Link className="btn btn-info" to={`/explorematch/${_id}`}>
                 Ver detalles
               </Link>
             </Card.Body>

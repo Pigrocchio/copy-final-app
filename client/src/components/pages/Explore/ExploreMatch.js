@@ -86,27 +86,40 @@ class ExploreMatch extends Component {
 
     if (userAppointed == false) {
       joinbutton = (
-        <Link to={this.props._id} className="btn btn-sm btn-success" onClick={() => this.joinMatch()}>
+        <Link to={this.props._id} className="btn btn-success" onClick={() => this.joinMatch()}>
           Join the match
         </Link>
       );
     } else if (userAppointed == true) {
-      joinbutton = <Link className="btn btn-sm btn-warning">Alredy joined </Link>;
-    } else if (participantLenght < 3) {
+      joinbutton =
+        <>
+        <Link className="btn btn-warning">Alredy joined </Link>
+
+      <Button className="btn  btn-danger" onClick={this.resign}>
+                Resing form match Match
+              </Button>
+              </>
+    } else if (participantLenght < 5) {
       joinbutton = (
-        <Link to={this.props._id} className="btn btn-sm btn-succes" onClick={() => this.joinMatch()}>
+        <>
+        <Link to={this.props._id} className="btn btn-succes" onClick={() => this.joinMatch()}>
           Join the match
         </Link>
+
+        <Button className="btn  btn-danger" onClick={this.resign}>
+                Resing form match Match
+              </Button>
+              </>
       );
     } else {
-      joinbutton = <Link className="btn btn-sm btn-danger">Match Full</Link>;
+      joinbutton = <Link className="btn btn-danger">Match Full</Link>;
     }
 
     return (
       <Container className="match-details">
-        <section>
+        <section className="margin-top">
           <Row>
-            <Col md={4}>
+            <Col md={6}>
               <h2>{this.state.match.name}</h2>
               <p>
                 <strong>Descripción:</strong> {this.state.match.description}
@@ -118,17 +131,17 @@ class ExploreMatch extends Component {
               </p>
               <strong>Club:</strong> {club}
               <hr></hr>
+              <strong>Price:</strong> €{this.state.match.price}
+              <hr></hr>
               <strong>Partecipants number:</strong> {participantLenght}
               <hr></hr>
-              <Row>{this.state.match.participant && this.state.match.participant.map(matchs => <Partecipantlist key={matchs._id} {...matchs} />)}</Row>
               <br />
+
               {joinbutton}
-              <Link to="/explore" className="btn btn-sm btn-dark">
+              
+              <Link to="/explore" className="btn btn-info">
                 Volver
               </Link>
-              <Button className="btn btn-sm btn-danger" onClick={this.resign}>
-                Resing form match Match
-              </Button>
             </Col>
 
             <Col md={{ span: 6, offset: 0 }}>
@@ -140,10 +153,9 @@ class ExploreMatch extends Component {
                 clubid={clubId}
                 coordinates={{ lat, long }}
               />
-
-              
             </Col>
           </Row>
+          <Row>{this.state.match.participant && this.state.match.participant.map(matchs => <Partecipantlist key={matchs._id} {...matchs} />)}</Row>
         </section>
       </Container>
     );

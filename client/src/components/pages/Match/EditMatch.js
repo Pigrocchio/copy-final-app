@@ -70,9 +70,8 @@ class EditMatch extends Component {
     this._organizeMatchsService
       .postEditMatch(id, match)
       .then(x => {
-        console.log("editato", this.props.match.params.id);
-        
-        this.updateState();
+        console.log("editato", this.props.match.params.id);        
+        this.updateState(this.state);
         // console.log("user id", this.props.loggedInUser._id);
       })
       .catch(err => console.log(err));
@@ -80,7 +79,7 @@ class EditMatch extends Component {
 
   render() {
       return (
-        <Container>
+        <Container className="margin-top">
           <h1>Edit the Match Details</h1>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group>

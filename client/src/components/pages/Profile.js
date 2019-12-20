@@ -70,9 +70,9 @@ class Profile extends Component {
     const timeCutSplice = timeCut.substr(0, 10);
 
     return (
-      <Container>
+      <Container className="margin-top">
         <h2>Bienvenid@ {this.props.loggedInUser.username}</h2>
-        <Row>
+        <Row className="align">
           <Col className="profile-card" md={8}>
             <div className="profile-card">
               <strong> Email: </strong> <p className="informacion">{this.props.loggedInUser.email}</p>
@@ -93,8 +93,7 @@ class Profile extends Component {
           <Col className="profile-card" md={4}>
             <div className="profile-card">
               <img src={this.props.loggedInUser.imageUrl} alt={this.props.loggedInUser.imageUrl} />
-              <p className=""></p>
-            </div>
+                 </div>
           </Col>
         </Row>
 
@@ -122,7 +121,7 @@ class Profile extends Component {
             </Row>
           </Col>
         </Row>
-        
+
         <Modal show={this.state.showModalWindow1} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Organize a match</Modal.Title>

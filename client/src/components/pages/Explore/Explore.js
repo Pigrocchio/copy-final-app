@@ -58,32 +58,38 @@ console.log(typeof lat, typeof long)
     console.log("el matchhhhh", this.state.organizedmatch);
     return (
       <>
-        <Container>
-          <Row>
-            <h1>Find Football match around you</h1>
-            <div style={{ height: "45vh", width: "100%" }}>
-              <WrappedMap
-                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE}`}
-                loadingElement={<div style={{ height: `45vh` }} />}
-                containerElement={<div style={{ height: `45vh` }} />}
-                mapElement={<div style={{ height: `45vh` }} />}
-                clublist={this.state.organizedmatch}
-                coordinates={{ lat, long }}
-              />
-            </div>
-          </Row>
-
-          <br />
-          <h2>Join the match</h2>
+        <Container className="margin-top">
           <Row>
             <Col></Col>
             <Col>
-            {this.state.organizedmatch &&
-              this.state.organizedmatch.map(matchs => (
-                <Col md={6}>
-                  <ExploreMatchlist key={matchs._id} {...matchs} id={this.props.loggedInUser._id} updatelist={this.updateOrganizedMatchList} />
-                </Col>
-              ))}
+              <h1>Find Football match around you</h1>
+
+              <div style={{ height: "45vh", width: "800px" }}>
+                <WrappedMap
+                  googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE}`}
+                  loadingElement={<div style={{ height: `45vh` }} />}
+                  containerElement={<div style={{ height: `45vh` }} />}
+                  mapElement={<div style={{ height: `45vh` }} />}
+                  clublist={this.state.organizedmatch}
+                  coordinates={{ lat, long }}
+                />
+              </div>
+            </Col>
+            <Col></Col>
+          </Row>
+
+          <br />
+
+          <Row>
+            <Col></Col>
+            <Col className="text-center">
+              <h2>Join the match</h2>
+              {this.state.organizedmatch &&
+                this.state.organizedmatch.map(matchs => (
+                  
+                    <ExploreMatchlist key={matchs._id} {...matchs} id={this.props.loggedInUser._id} updatelist={this.updateOrganizedMatchList} />
+                  
+                ))}
             </Col>
             <Col></Col>
           </Row>
