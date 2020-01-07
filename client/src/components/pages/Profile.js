@@ -137,15 +137,4 @@ class Profile extends Component {
 
 export default Profile;
 
-// MAP PER LISTA SIN EDITAR
-// <Row>
-//   {this.state.organizedmatch.map(matchs => (
-//     <MatchCreatedlist
-//       key={matchs._id}
-//       {...matchs}
-//       deleteMatch={this.deleteTheMatch.bind(this)}
-//       updatematch={this.updateOrganizedMatchList}
-//       loggedInUser={this.props.loggedInUser}
-//     />
-//   ))}
-// </Row>;
+

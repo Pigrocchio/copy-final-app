@@ -139,3 +139,14 @@ margin: 0 auto;
 .box:hover {
   box-shadow: 0 0 11px rgba(33,33,33,.2); 
 }
+
+.slider {
+
+    border: 1px solid black;
+    padding: 5px;
+    display: inline-flex;
+    margin: 2px;
+    border-radius: 3px;
+    width: 100%;
+
+}

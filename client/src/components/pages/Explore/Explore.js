@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Button, Form, Row, Container, Col, Modal } from "react-bootstrap";
 import Service from "../../../service/OrganizeMatch.service";
 import ExploreMatchlist from "./ExploreMatchlist";
-import SimpleMap from "../map/SimpleMap";
-import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps";
+import SliderValue from "../../ui/SliderValue"
+
 import WrappedMap from "../map/Map";
 
 
@@ -11,16 +11,22 @@ class Explore extends Component {
   constructor(props) {
     super(props);
     this._service = new Service();
+    this.handleData = this.handleData.bind(this);
+    this.updateFilteredMatch = this.updateFilteredMatch.bind(this);
     this.state = {
       organizedmatch: [],
       lat: [],
       lng: [],
-      coord: []
+      coord: [],
+      fromChild: 0,
+      filteredMatch: []
     };
   }
 
   componentDidMount = () => this.updateOrganizedMatchList();
 
+  
+  
   updateOrganizedMatchList = () => {
     let id = this.props.loggedInUser._id;
     console.log("Id logged User", id);
@@ -28,11 +34,24 @@ class Explore extends Component {
       .getAllCreatedMatch()
       .then(allCreatedMatchFromDB => {
         this.setState({ organizedmatch: allCreatedMatchFromDB.data });
-        // console.log("listato eventi:", this.state.organizedmatch);
       })
       .catch(err => console.log("Error", err));
     this.positionUser();
   };
+
+  handleData(data) {
+    this.setState({
+      fromChild: data
+    });
+  }
+
+  updateFilteredMatch (data) {
+    let filter = data
+    this.state.filteredMatch = filter
+    console.log('DATA', this.state.filteredMatch)
+    console.log("Filter", filter);
+    
+  }
 
   positionUser = () => {
     let usercoord = [];
@@ -52,10 +71,13 @@ class Explore extends Component {
     const club = this.state.organizedmatch.club && this.state.organizedmatch.club.name;
     const lat = this.state.coord[0];
     const long = this.state.coord[1];
-console.log(typeof lat, typeof long)
+    const filter = []
+    var date = new Date();
+    var stringDate = date.toString().split(' ').join('').substring(6,14)
+   
+    console.log("Actual Date", stringDate);
 
    
-    console.log("el matchhhhh", this.state.organizedmatch);
     return (
       <>
         <Container className="margin-top">
@@ -63,6 +85,9 @@ console.log(typeof lat, typeof long)
             <Col></Col>
             <Col>
               <h1>Find Football match around you</h1>
+              <div className="slider">
+                <span>Select the distance from you: </span> <SliderValue handlerFromParant={this.handleData} />
+              </div>
 
               <div style={{ height: "45vh", width: "800px" }}>
                 <WrappedMap
@@ -72,6 +97,9 @@ console.log(typeof lat, typeof long)
                   mapElement={<div style={{ height: `45vh` }} />}
                   clublist={this.state.organizedmatch}
                   coordinates={{ lat, long }}
+                  prova={"ciao"}
+                  distanceValue={this.state.fromChild}
+                  returnFilteredMatch={this.updateFilteredMatch}
                 />
               </div>
             </Col>
@@ -84,11 +112,9 @@ console.log(typeof lat, typeof long)
             <Col></Col>
             <Col className="text-center">
               <h2>Join the match</h2>
-              {this.state.organizedmatch &&
-                this.state.organizedmatch.map(matchs => (
-                  
-                    <ExploreMatchlist key={matchs._id} {...matchs} id={this.props.loggedInUser._id} updatelist={this.updateOrganizedMatchList} />
-                  
+              {this.state.filteredMatch &&
+                this.state.filteredMatch.map(matchs => (
+                  <ExploreMatchlist key={matchs._id} {...matchs} id={this.props.loggedInUser._id} updatelist={this.updateOrganizedMatchList} />
                 ))}
             </Col>
             <Col></Col>
@@ -101,6 +127,4 @@ console.log(typeof lat, typeof long)
 
 export default Explore;
 
-//  <Row>
-//             <SimpleMap clublist={this.state.organizedmatch} coordinates={{ lat, long }}></SimpleMap>
-//           </Row>
+
