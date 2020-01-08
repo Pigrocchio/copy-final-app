@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import WrappedMap from "../map/NewSingleMap";
 import Partecipantlist from "./Partecipantlist";
@@ -45,7 +45,7 @@ console.log(long);
 
      
     return (
-      <Container  className="match-details">
+      <Container className="match-details">
         <section className="margin-top">
           <Row>
             <Col md={6}>
@@ -81,8 +81,34 @@ console.log(long);
               />
             </Col>
           </Row>
-              <Row>{this.state.match.participant && this.state.match.participant.map(matchs => <Partecipantlist key={matchs._id} {...matchs} />)}</Row>
+          <Row>{this.state.match.participant && this.state.match.participant.map(matchs => <Partecipantlist key={matchs._id} {...matchs} />)}</Row>
         </section>
+
+        <Card.Body>
+          <Card.Title
+            style={{
+              textAlign: "center",
+              textTransform: "uppercase"
+            }}
+          >
+            <h3>Leave a comment</h3>
+          </Card.Title>
+          <Card.Text style={{ marginTop: "50px" }}>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group>
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" name="name" onChange={this.handleInputChange} value={0} />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Message</Form.Label>
+                <Form.Control as="textarea" type="text" name="message" row="5" onChange={this.handleInputChange} value={0} />
+              </Form.Group>
+              <Button variant="light" type="submit" className="btn-profile" onClick={this.handleSubmit}>
+                Send Comment
+              </Button>
+            </Form>
+          </Card.Text>
+        </Card.Body>
       </Container>
     );
   }
